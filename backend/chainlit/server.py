@@ -180,7 +180,7 @@ def get_build_dir(local_target: str, packaged_target: str) -> str:
     Returns:
         str: The build directory
     """
-
+    logger.log(PACKAGE_ROOT+"  " + BACKEND_ROOT +" " + APP_ROOT)
     local_build_dir = os.path.join(PACKAGE_ROOT, local_target, "dist")
     packaged_build_dir = os.path.join(BACKEND_ROOT, packaged_target, "dist")
 
@@ -228,7 +228,7 @@ async def serve_public_file(
 
     base_path = Path(public_dir)
     file_path = (base_path / filename).resolve()
-
+    logger.log( base_path +"  " + file_path +" ")
     if not is_path_inside(file_path, base_path):
         raise HTTPException(status_code=400, detail="Invalid filename")
 
@@ -243,7 +243,7 @@ async def serve_asset_file(
     filename: str,
 ):
     """Serve a file from assets dir."""
-
+    logger.log( build_dir +"  " + base_path +" ")
     base_path = Path(os.path.join(build_dir, "assets"))
     file_path = (base_path / filename).resolve()
 
